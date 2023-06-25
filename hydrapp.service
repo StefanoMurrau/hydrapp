@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve hydrapp
+After=network.target
+Wants=sssd.service
+
+[Service]
+User=<NOMEU TENTE>
+Group=<NOME GRUPPO>
+WorkingDirectory=<DIRECTORY DI DEPLOY>
+Environment="PATH=<DIRECTORY DI DEPLOY>/venv/bin"
+ExecStart=<DIRECTORY DI DEPLOY>/venv/bin/gunicorn --workers 6 --timeout 360 --access-logfile <DIRECTORY DI LOG>/gunicorn-access.log --error-logfile <DIRECTORY DI LOG>/gunicorn-error.log --bind 127.0.0.1:8080 -m 022 run:app
+
+[Install]
+WantedBy=multi-user.target
