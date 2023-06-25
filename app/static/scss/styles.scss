@@ -1,0 +1,19 @@
+@import '../lib/bootstrap-5.2.3/scss/functions' ;
+@import '../lib/bootstrap-5.2.3/scss/variables' ;
+
+$sticky-footer-height: 80px ;
+$nav-height: 60px ;
+$nav-height-m: 120px ;
+$nav-height-s: 180px ;
+$nav-height-xs: 240px ;
+
+$custom-colors: (
+  "primary": #002D4B
+) ;
+$theme-colors: map-merge($theme-colors, $custom-colors) ;
+
+@import "../lib/bootstrap-5.2.3/scss/bootstrap" ;
+@import "../lib/fontawesome-free/css/all.min.css" ;
+@import "../lib/jquery-ui-1.13.0/jquery-ui.min.css" ;
+@import "global" ;
+@import "footer" ;

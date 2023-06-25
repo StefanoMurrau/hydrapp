@@ -1,0 +1,14 @@
+{% from "macros.html" import create_head with context %}
+{% from "macros.html" import import_js with context %}
+{% from "macros.html" import create_footer with context %}
+
+<!DOCTYPE html>
+
+<html lang="it">
+	{{create_head(title)}}	
+    <body id="page-top">
+		{% block content %}{% endblock %}
+        {{create_footer()}}
+		{{import_js(args)}}
+	</body>
+</html>

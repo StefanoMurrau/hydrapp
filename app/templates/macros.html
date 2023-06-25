@@ -1,0 +1,95 @@
+<!-- START CREATE HEAD //-->   
+{% macro create_head(title) %}
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="author" content="Murrau Stefano" />
+    <meta name="description" content="Hydrapp" />
+    <title>{{display_name}} | {{ title }}</title>
+    <!-- Favicon //-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}" />
+    <link rel="mask-icon" href="{{ url_for('static', filename='favicon/safari-pinned-tab.svg') }}" color="#5bbad5") />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" />
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="{{ url_for('static', filename='favicon/browserconfig.xml') }}" />
+    <meta name="theme-color" content="#ffffff">
+    <!-- Theme core Css //-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.min.css') }}" />
+</head>
+{% endmacro %}
+<!-- END CREATE HEAD //-->
+
+
+<!-- START IMPORT JS //-->   
+{% macro import_js(libs) %}
+<!-- JQuery JavaScript //-->
+<script src="{{ url_for('static', filename='lib/jquery-3.6.0.min.js') }}"></script>
+<!-- Bootstrap core JavaScript //-->
+<script src="{{ url_for('static', filename='lib/bootstrap-5.2.3/dist/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Jquery-UI core JavaScript //-->
+<script src="{{ url_for('static', filename='lib/jquery-ui-1.13.0/jquery-ui.min.js') }}"></script>
+<!-- Core plugin JavaScript //-->
+<script src="{{ url_for('static', filename='lib/jquery-easing/jquery.easing.min.js') }}"></script>
+<!-- Js Page JavaScript //-->
+{% for lib in libs %}
+<script src="{{ url_for('static', filename='%s.js' % (lib)) }}"></script>
+{% endfor %}
+{% endmacro %}
+<!-- END IMPORT JS //-->  
+
+
+<!-- START CREATE ALERT MESSAGE //-->   
+{% macro create_alert_msg() %}
+{%- with messages = get_flashed_messages(with_categories=true) -%}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show mt-5" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+{%- endwith %}
+{% endmacro %}
+<!-- END CREATE ALERT MESSAGE //-->  
+
+
+<!-- START CREATE NAVBAR //-->   
+{% macro create_navbar() %}
+<nav class="navbar navbar-expand bg-primary navbar-dark static-top px-2">
+    <a class="navbar-brand mr-1" href="{{ url_for('main.home') }}">
+        <span class="ms-3">{{display_name}}</span>
+    </a>
+    <form class="w-100 d-flex flex-row align-items-center flex-wrap" method="POST" action="#">
+        {{ form.csrf_token }}
+        <div class="flex-fill mx-3 inputs">
+            {{ form.data_type( option_attr={"data-type-0":{"disabled": "disabled"}} ) }}
+        </div>
+        <div class="flex-fill mx-3 inputs">
+            {{ form.run_reference( option_attr={"run-reference-0":{"disabled": "disabled"}} ) }}
+        </div>
+        <div class="flex-fill mx-3 inputs">
+            {{ form.run_configuration( option_attr={"run-configuration-0":{"disabled": "disabled"}} ) }}
+        </div>
+        <div class="flex-fill mx-3 inputs">
+            <i class="far fa-calendar-alt fa-2x"></i>
+            {{ form.time() }}
+        </div>
+    </form>
+</nav>
+{% endmacro %}
+<!-- END CREATE NAVBAR //-->  
+
+
+<!-- START CREATE FOOTER //-->   
+{% macro create_footer() %}
+<footer class="sticky-footer">
+    <div class="container my-auto">
+        <div id="copyright-txt" class="copyright text-center my-auto"></div>
+    </div>
+</footer>
+{% endmacro %}
