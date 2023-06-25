@@ -10850,89 +10850,76 @@ textarea.form-control-lg {
 }
 
 html {
-  font-family: "Lato", sans-serif;
   height: calc(100% - 80px);
 }
 
 body {
   height: 100%;
+  font-family: "Lato", sans-serif !important;
 }
 body nav {
-  height: 60px;
+  height: auto;
 }
-
-#wrapper {
-  height: calc(100% - 60px);
+body nav form {
+  gap: 5px;
 }
-#wrapper #content-wrapper {
-  height: 100%;
-}
-#wrapper #content-wrapper .container {
-  height: 100%;
-}
-#wrapper #content-wrapper .container .row {
-  height: 100%;
-}
-#wrapper #content-wrapper .container .row .col-12 {
-  height: 100%;
-}
-
-.btn:focus,
-.btn-primary:focus {
-  box-shadow: none;
-}
-
-@media (max-width: 787px) {
-  #wrapper {
-    height: calc(100% - 120px);
-  }
-  body nav {
-    height: 120px;
-  }
-  body nav form .inputs:last-child {
-    margin-top: 5px;
-  }
-}
-@media (max-width: 592px) {
-  #wrapper {
-    height: calc(100% - 180px);
-  }
-  body nav form .inputs:nth-child(3) {
-    margin-top: 5px;
-  }
-}
-@media (max-width: 517px) {
-  body nav {
-    height: 180px;
-  }
-  body nav form .inputs:first-child {
-    margin-bottom: 5px;
-  }
-  body nav .inputs:nth-child(3) {
-    margin-bottom: 5px;
-  }
-}
-@media (max-width: 421px) {
-  #wrapper {
-    height: calc(100% - 240px);
-  }
-  body nav {
-    height: 240px;
-  }
-}
-form .inputs i {
+body nav form .inputs i {
   position: absolute;
   right: 28px;
   padding: 2px;
   pointer-events: none;
 }
-
-.carousel-control-prev-icon {
+body #wrapper {
+  height: 100%;
+}
+body #wrapper #content-wrapper {
+  height: 100%;
+}
+body #wrapper #content-wrapper .container {
+  height: 100%;
+}
+body #wrapper #content-wrapper .container .row {
+  height: calc(100% - 15px);
+}
+body #wrapper #content-wrapper .container .row .col-12 {
+  height: 100%;
+}
+body #wrapper #content-wrapper .container .row .col-12 #hydrapp-carousel {
+  border: 1px solid #002D4B;
+}
+body #wrapper #content-wrapper .container .row .col-12 #hydrapp-carousel .carousel-control-prev {
+  left: -4%;
+}
+body #wrapper #content-wrapper .container .row .col-12 #hydrapp-carousel .carousel-control-prev .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23002D4B' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
 }
-
-.carousel-control-next-icon {
+body #wrapper #content-wrapper .container .row .col-12 #hydrapp-carousel .carousel-control-next {
+  right: -4%;
+}
+body #wrapper #content-wrapper .container .row .col-12 #hydrapp-carousel .carousel-control-next .carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23002D4B' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+body .btn:focus,
+body .btn-primary:focus {
+  box-shadow: none;
+}
+
+.img_placeholder {
+  max-height: 300px;
+  width: auto;
+  height: 100%;
+}
+
+.ui-state-highlight {
+  border: 1px solid #002D4B !important;
+  background: #f6f6f6 !important;
+  color: #002D4B !important;
+}
+
+.ui-state-active {
+  border: 1px solid #002D4B !important;
+  background: #002D4B !important;
+  color: #fff !important;
 }
 
 footer.sticky-footer {

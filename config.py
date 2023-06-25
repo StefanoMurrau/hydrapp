@@ -1,9 +1,6 @@
 import sys
-from datetime import timedelta
 from os import getenv, path
-
 from dotenv import load_dotenv
-
 from app.functions import slugify
 
 
@@ -15,7 +12,7 @@ try:
     with open( ENV_PATH , "r"):
         load_dotenv(ENV_PATH)
 except FileNotFoundError as e:
-    sys.exit(f"{format(e)}. In case of a new installation, rename the .env_example file to .env, move it into the instance folder and configure it.")
+    sys.exit(f"{repr(e)}. In case of a new installation, rename the .env_example file to .env, move it into the instance folder and configure it.")
 
 
 class LogFilter(object):
@@ -35,6 +32,7 @@ class LogFilter(object):
         @param logRecord The LogRecord object that is being filtered.
         @return The logRecord.levelno and (logRecord.module!="_internal")
         """
+        
         if logRecord.levelno in self.__level:
             return logRecord.levelno and (logRecord.module!="_internal")
 
@@ -52,6 +50,7 @@ class WerkzeugFilter(object):
         @param logRecord The LogRecord object that is being filtered.
         @return The logRecord.name is being returned.
         """
+        
         return (logRecord.name=="werkzeug")
 
 
@@ -64,13 +63,6 @@ class Config(object):
     APP_PORT = "4040"
     APP_SSL_CONTEXT = ["./certs/server.crt", "./certs/server.key"]
     JSON_SORT_KEYS = False
-    SESSION_TYPE = 'filesystem'
-    SESSION_PERMANENT = True
-    SESSION_FILE_THRESHOLD = 1
-    CUSTOM_PERMANENT_SESSION_LIFETIME = timedelta(hours=6)
-    ADMIN_NAME = getenv('ADMIN_NAME')
-    ADMIN_MAIL = getenv('ADMIN_MAIL')
-    MAIL_USE_TLS = True
     DATA_DIR=["static", "data"]
     LOGGING_CONFIG = {
         "version": 1,

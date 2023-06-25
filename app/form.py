@@ -1,4 +1,3 @@
-from datetime import datetime
 from flask_wtf import FlaskForm
 from markupsafe import Markup
 from wtforms import SelectField, StringField

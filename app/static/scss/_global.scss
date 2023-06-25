@@ -32,99 +32,88 @@
 }
 
 html {
-    font-family: 'Lato', sans-serif ;
     height: calc(100% - $sticky-footer-height) ;
 }
 
 body {
     height: 100% ;
+    font-family: 'Lato', sans-serif !important ;
 
     nav {
-        height: $nav-height ;
-    }
-}
+        height: auto ;
 
-#wrapper {
-    height: calc(100% - $nav-height) ;
-    #content-wrapper{
-        height:100%  ;
-        .container{
-            height: 100% ;
-            .row{
-                height: 100%  ;
-                .col-12{
-                    height: 100%  ;
-                }
-            }  
-        }
-    }
-}
+        form {
+            gap: 5px ;
 
-.btn:focus,
-.btn-primary:focus {
-    box-shadow: none ;
-}
-
-@media (max-width: 787px) {
-    #wrapper {
-        height: calc(100% - $nav-height-m) ;   
-    }
-
-    body nav {
-        height: $nav-height-m ;
-        form .inputs:last-child{
-            margin-top: 5px ;
-
-        }
-    }
-}
-
-@media (max-width: 592px) {
-    #wrapper {
-        height: calc(100% - $nav-height-s) ;   
-    }
-
-    body nav {
-        form .inputs:nth-child(3){
-            margin-top: 5px ;
-        }
-    }
-}
-
-@media (max-width: 517px) {
-    body nav {
-        height: $nav-height-s ;
-        form 
-            .inputs:first-child{
-                margin-bottom: 5px ;
+            .inputs i {
+                position: absolute ;
+                right: 28px ;
+                padding: 2px ;
+                pointer-events: none ;
             }
-            .inputs:nth-child(3){
-                margin-bottom: 5px ;
-            }
+        }
     }
-}
 
-@media (max-width: 421px) {
     #wrapper {
-        height: calc(100% - $nav-height-xs) ;   
+        height: 100% ;
+
+        #content-wrapper{
+            height:100%  ;
+
+            .container{
+                height: 100% ;
+
+                .row{
+                    height: calc(100% - 15px)  ;
+
+                    .col-12{
+                        height: 100%  ;
+
+                        #hydrapp-carousel{
+                            border: 1px solid map-get($theme-colors, primary) ;
+
+                            .carousel-control-prev {
+                                left: -4% ;
+                              
+                                .carousel-control-prev-icon {
+                                background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23002D4B' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+                                }
+                            }
+
+                            .carousel-control-next{
+                                right: -4% ;
+                     
+                                .carousel-control-next-icon {
+                                    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23002D4B' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+                                }
+                            }
+                        }
+                    }
+                }  
+            }
+        }
     }
 
-    body nav {
-        height: $nav-height-xs ;
+    .btn:focus,
+    .btn-primary:focus {
+        box-shadow: none ;
     }
 }
 
-form .inputs i {
-    position: absolute ;
-    right: 28px ;
-    padding: 2px ;
-    pointer-events: none ;
+.img_placeholder{
+    max-height: 300px ;
+    width: auto ;
+    height: 100% ;
 }
 
-.carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23002D4B' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
-   }
-   
-   .carousel-control-next-icon {
-     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23002D4B' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
-   }
+.ui-state-highlight{
+    border: 1px solid map-get($theme-colors, primary) !important ;
+    background: #f6f6f6 !important ;
+    color: map-get($theme-colors, primary) !important ;
+}
+
+.ui-state-active{
+    border: 1px solid map-get($theme-colors, primary) !important ;
+    background: map-get($theme-colors, primary) !important ;
+    color: #fff !important ;
+}

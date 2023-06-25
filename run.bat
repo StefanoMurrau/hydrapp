@@ -83,7 +83,6 @@ setlocal enabledelayedexpansion
     )
 
     IF %ENV%==waitress (
-        pip.exe install waitress
         ECHO Serving on http://127.0.0.1:4041
         waitress-serve --call --url-scheme=https --threads=4 --port=4041 app:create_app  
     )

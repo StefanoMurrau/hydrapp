@@ -1,13 +1,13 @@
-from flask import Blueprint, abort, render_template, request, jsonify, current_app, Markup, flash, url_for, redirect
+from glob import glob
+from flask import Blueprint, abort, render_template, request, jsonify, current_app, Markup, flash
 from jinja2 import TemplateNotFound
 from app.form import nav_form
 from os import path
-from app.functions import get_data_from_csv, get_data_types, get_images_basedirs, list_images
+from app.functions import get_data_from_csv, get_data_types, get_images_basedirs, list_images, convert_format
 from app.form import nav_form
 
 
 main = Blueprint('main', __name__)
-
 
 BASEDIR = path.abspath(path.dirname(__file__))
 
@@ -118,6 +118,11 @@ def update_run_configuration():
 @main.route('/get-images', methods=['GET','POST'])
 def get_images():
     """
+    This function retrieves images based on certain parameters and returns them in a JSON format.
+    
+    @return A JSON object. If the request method is POST and the data is successfully retrieved and
+    processed, the JSON object will contain the image data. If there is an error, the JSON object will
+    contain a boolean value of False.
     """
 
     if request.method == "POST":
@@ -134,10 +139,37 @@ def get_images():
                 flash(msg, 'danger')
                 return jsonify(False)
             else:
-                imgs = list_images(data[1])
+                data = list_images(data[1])
+                if not data[0]:
+                    msg = Markup(f"Errore.</br><i>{data[1]}</i>")
+                    flash(msg, 'danger')
+                    return jsonify(False)
                 
-                return jsonify(imgs)
+            return jsonify(data)
         except Exception as e:
             msg = Markup(f"Errore.</br><i>{repr(e)}</i>")
             flash(msg, 'danger')
-            return jsonify(False)     
+            return jsonify(False)  
+   
+        
+#########################################
+# GET AVAILABLES DAY                    #                                              
+#########################################
+@main.route('/get-availables-date', methods=['GET','POST'])
+def get_availables_date():
+    """
+    """
+
+    if request.method == "POST":
+        try:
+            run_configuration = request.json["run-configuration"]
+            run_reference = request.json["run_reference"]
+            csv = request.json["csv"]
+            
+            data = [convert_format(path.basename(x)) for x in  glob(path.join(BASEDIR, *current_app.config["DATA_DIR"], csv, run_reference, run_configuration, "*"))]
+            print(data)
+            return jsonify(data)
+        except Exception as e:
+            msg = Markup(f"Errore.</br><i>{repr(e)}</i>")
+            flash(msg, 'danger')
+            return jsonify(False)        
